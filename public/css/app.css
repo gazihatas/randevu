@@ -11286,3 +11286,22 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+ul,li
+{
+    list-type:none;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.select-time-ul .select-time
+{
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+
