@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['namespace'=>'api'],function ()
 {
     Route::get('/working-hours/{date?}',[indexController::class, 'getWorkingHours']);
+    Route::post('/appointment-store',[indexController::class, 'appointmentStore']);
 });
