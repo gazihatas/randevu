@@ -22,37 +22,24 @@
 
         </div>
 
+        <!-- Date-->
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="form-group">
-                    <input type="date" v-model="date" class="form-comtrol">
+                    <input type="date" @change="selectDate" v-model="date" class="form-comtrol">
                 </div>
             </div>
         </div>
 
+        <!-- Saatler-->
         <div class="row mt-2">
             <div class="col-md-12">
                 <ul class="select-time-ul">
-                    <li class="select-time">
-                        <input type="radio">
-                        <span>10.00 - 11.00</span>
+                    <li v-for="item in workingHours" class="select-time">
+                        <input type="radio" v-model="workingHour">
+                        <span>{{item.hours}}</span>
                     </li>
-                    <li class="select-time">
-                        <input type="radio">
-                        <span>11.00 - 12.00</span>
-                    </li>
-                    <li class="select-time">
-                        <input type="radio">
-                        <span>12.00 - 13.00</span>
-                    </li>
-                    <li class="select-time">
-                        <input type="radio">
-                        <span>14.00 - 15.00</span>
-                    </li>
-                    <li class="select-time">
-                        <input type="radio">
-                        <span>16.00 - 17.00</span>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -81,15 +68,24 @@ export default {
           email:'',
           phone:'',
           text:'',
-          date:new Date().toISOString().slice(0,10)
+          date:new Date().toISOString().slice(0,10),
+          workingHours:[],
+          workingHour:''
       }
     },
     mounted() {
-        console.log("I'm here.");
+        axios.get('http://randevu.test/api/working-hours')
+            .then((res)=>{
+                this.workingHours = res.data;
+            });
+
     },
     methods:{
         store:function (){
             console.log("Tıklandı.");
+        },
+        selectDate:function(){
+            console.log("Tarih Değişti");
         }
     }
 }

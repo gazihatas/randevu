@@ -5359,19 +5359,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5379,15 +5366,24 @@ __webpack_require__.r(__webpack_exports__);
       email: '',
       phone: '',
       text: '',
-      date: new Date().toISOString().slice(0, 10)
+      date: new Date().toISOString().slice(0, 10),
+      workingHours: [],
+      workingHour: ''
     };
   },
   mounted: function mounted() {
-    console.log("I'm here.");
+    var _this = this;
+
+    axios.get('http://randevu.test/api/working-hours').then(function (res) {
+      _this.workingHours = res.data;
+    });
   },
   methods: {
     store: function store() {
       console.log("Tıklandı.");
+    },
+    selectDate: function selectDate() {
+      console.log("Tarih Değişti");
     }
   }
 });
@@ -28221,6 +28217,7 @@ var render = function () {
             attrs: { type: "date" },
             domProps: { value: _vm.date },
             on: {
+              change: _vm.selectDate,
               input: function ($event) {
                 if ($event.target.composing) {
                   return
@@ -28233,7 +28230,38 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "row mt-2" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "ul",
+          { staticClass: "select-time-ul" },
+          _vm._l(_vm.workingHours, function (item) {
+            return _c("li", { staticClass: "select-time" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.workingHour,
+                    expression: "workingHour",
+                  },
+                ],
+                attrs: { type: "radio" },
+                domProps: { checked: _vm._q(_vm.workingHour, null) },
+                on: {
+                  change: function ($event) {
+                    _vm.workingHour = null
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(item.hours))]),
+            ])
+          }),
+          0
+        ),
+      ]),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-2" }, [
       _c("div", { staticClass: "col-md-12" }, [
@@ -28274,48 +28302,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("ul", { staticClass: "select-time-ul" }, [
-          _c("li", { staticClass: "select-time" }, [
-            _c("input", { attrs: { type: "radio" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("10.00 - 11.00")]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "select-time" }, [
-            _c("input", { attrs: { type: "radio" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("11.00 - 12.00")]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "select-time" }, [
-            _c("input", { attrs: { type: "radio" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("12.00 - 13.00")]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "select-time" }, [
-            _c("input", { attrs: { type: "radio" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("14.00 - 15.00")]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "select-time" }, [
-            _c("input", { attrs: { type: "radio" } }),
-            _vm._v(" "),
-            _c("span", [_vm._v("16.00 - 17.00")]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
