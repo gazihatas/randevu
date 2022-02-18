@@ -5361,16 +5361,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      name: '',
-      email: '',
-      phone: '',
-      text: '',
+      errors: [],
+      workingHour: 0,
+      name: null,
+      email: null,
+      phone: null,
+      text: null,
       date: new Date().toISOString().slice(0, 10),
-      workingHours: [],
-      workingHour: ''
+      workingHours: []
     };
   },
   mounted: function mounted() {
@@ -5382,7 +5395,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     store: function store() {
-      console.log(this.name);
+      if (this.name && this.email && this.validEmail(this.Email) && this.phone && this.workingHour != 0) {
+        console.log("Form Gönderilmeye Hazır.");
+      }
+
+      this.errors = [];
+
+      if (!this.name) {
+        this.errors.push('İsim Soyisim Girilmelidir.');
+      }
+
+      if (!this.email || !this.validEmail(this.email)) {
+        this.errors.push('Email Girilmelidir ve Formatı Doğru olmalıdır.');
+      }
+
+      if (!this.phone) {
+        this.errors.push('Telefon Numarası Girilmelidir.');
+      }
+
+      if (!this.workingHour) {
+        this.errors.push('Çalışma saati seçilmelidir');
+      }
     },
     selectDate: function selectDate() {
       var _this2 = this;
@@ -5390,6 +5423,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('http://randevu.test/api/working-hours/${this.date}').then(function (res) {
         _this2.workingHours = res.data;
       });
+    },
+    validEmail: function validEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 });
@@ -28668,6 +28705,24 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "ul",
+            _vm._l(_vm.errors, function (i) {
+              return _c("li", { staticClass: "errors" }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(i) +
+                    "\n                    "
+                ),
+              ])
+            }),
+            0
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "form-group" }, [
           _c("input", {
@@ -28767,7 +28822,7 @@ var render = function () {
                 expression: "date",
               },
             ],
-            staticClass: "form-comtrol",
+            staticClass: "form-control",
             attrs: { type: "date" },
             domProps: { value: _vm.date },
             on: {
