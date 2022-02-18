@@ -5,8 +5,10 @@
  */
 
 require('./bootstrap');
+import VueMask from 'v-mask';
 
 window.Vue = require('vue').default;
+Vue.use(VueMask);
 
 /**
  * The following block of code may be used to automatically register your

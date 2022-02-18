@@ -1,24 +1,26 @@
 <template>
     <div class="container">
         <div class="row">
+            <!-- Ad Soyad -->
             <div class="col-md-12">
                     <div class="form-group">
                         <input type="text" class="form-control" v-model="name" placeholder="Ad Soyad">
                     </div>
             </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" v-model="email" placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" v-model="phone" placeholder="Telefon">
-                            </div>
-                        </div>
+            <!-- Email - Telefon-->
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" v-model="email" placeholder="Email">
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" v-mask="'##-###-###-##-##'" class="form-control" v-model="phone" placeholder="Telefon">
+                    </div>
+                </div>
+            </div>
 
         </div>
 
