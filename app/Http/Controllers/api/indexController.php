@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class indexController extends Controller
 {
-    public function  getWorkingHours()
+    public function  getWorkingHours($date = '')
     {
         //
-        $date = date("Y-m-d");
+        $date = ($date=='') ? date("Y-m-d") : $date;
         //geriye dönüş arrayi ekledik
         $returnArray = [];
         //VEri tabanındaki WorkingHouse tablosundaki tüm verileri aldık.

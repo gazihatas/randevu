@@ -36,7 +36,7 @@
             <div class="col-md-12">
                 <ul class="select-time-ul">
                     <li v-for="item in workingHours" class="select-time">
-                        <input type="radio" v-model="workingHour">
+                        <input type="radio" v-model="workingHour" v-bind:value="item.id">
                         <span>{{item.hours}}</span>
                     </li>
 
@@ -82,10 +82,13 @@ export default {
     },
     methods:{
         store:function (){
-            console.log("Tıklandı.");
+            console.log(this.name);
         },
         selectDate:function(){
-            console.log("Tarih Değişti");
+            axios.get('http://randevu.test/api/working-hours/${this.date}')
+                .then((res)=>{
+                    this.workingHours = res.data;
+                });
         }
     }
 }
