@@ -5399,7 +5399,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -29027,10 +29026,9 @@ var staticRenderFns = [
     return _c("div", [
       _c("div", { staticClass: "complete-form" }, [
         _c("i", {
-          staticClass: "fa fa-check-circle-o",
+          staticClass: "fa-regular fa-circle-check",
           attrs: { "aria-hidden": "true" },
         }),
-        _vm._v("\n            aa\n        "),
       ]),
     ])
   },

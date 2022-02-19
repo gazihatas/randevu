@@ -93,8 +93,7 @@
 
         <div>
             <div class="complete-form">
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                aa
+                <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
             </div>
         </div>
 
