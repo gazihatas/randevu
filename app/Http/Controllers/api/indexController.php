@@ -30,7 +30,7 @@ class indexController extends Controller
         return response()->json($returnArray);
     }
 
-    public function appointmenntStore(Request $request)
+    public function appointmentStore(Request $request)
     {
         $returnArray = [];
         $returnArray['status'] = false;
@@ -56,7 +56,8 @@ class indexController extends Controller
         }
         else{
             $returnArray['message'] = "Veri eklenemedi bizimle iletişime geçin.";
-            return response()->json($returnArray);
+
         }
+        return response()->json($returnArray);
     }
 }

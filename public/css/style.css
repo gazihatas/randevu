@@ -23,3 +23,10 @@ li.errors
     border: 1px solid red;
     border-color:red;
 }
+
+.complete-form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
