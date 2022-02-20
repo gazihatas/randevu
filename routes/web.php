@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\front\indexController;
+use \App\Http\Controllers\admin\adminController;
+use \App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +23,10 @@ Route::get('/',[indexController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::group(['namespace'=>'admin', 'prefix'=>'admin','as'=>'admin.'],function (){
+    Route::get('/',[adminController::class, 'index'])->name('index');
+});
+
+
